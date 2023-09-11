@@ -11,7 +11,7 @@ router.post("/login", userController.login);
 // router.get("/auth",auth.authMiddleware)
 // Route: POST /users/register
 router.post("/register", userController.register);
-
+router.get("/backedPro/:id", userController.getUserBackedProjects)
 module.exports = router;
 
 

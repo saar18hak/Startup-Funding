@@ -56,8 +56,15 @@ const projectsSchema = new Schema({
    
     backers:[
         {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"User"
+            user:{
+                type:mongoose.Schema.Types.ObjectId,
+                ref:"User"
+            },
+            backedAmount: {
+                type: Number,
+                default: 0, // Initialize the backed amount to 0
+            },
+
         }
     ]
 

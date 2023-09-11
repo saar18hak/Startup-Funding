@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const User = require("./model/user-model");
 
-exports.authenticateUser = async (email, password) => {
+exports.authenticateUser = async (email,password) => {
   try {
     const user = await User.findOne({ email: email });
     // if (user) {
@@ -19,7 +19,7 @@ exports.authenticateUser = async (email, password) => {
 
 exports.authMiddleware = async (req, res, next) => {
   try {
-    const { email } = req.body; // Assuming you send email and password in the request body
+    const { email,backedAmount} = req.body; // Assuming you send email and password in the request body
     console.log("Request Body:", req.body);
     const user = await exports.authenticateUser(email); // Use exports.authenticateUser
     console.log("Authenticated User:", user); 

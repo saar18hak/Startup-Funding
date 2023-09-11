@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const User = require("../model/user-model");
-
+const Project  = require("../model/project")
 
 exports.getUsers = async (req, res) => {
     try {
@@ -88,4 +88,30 @@ exports.register = async (req, res) => {
         console.error("Error while registering user:", err);
         res.status(500).send({ message: "Internal Server Error" });
     }
+};
+
+
+exports.getUserBackedProjects = async (req, res) => {
+    
+    try {
+        const userId = req.params.id;
+    
+        // Find the user by their ID
+        const user = await User.findById(userId);
+    
+        if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+        }
+    
+        // Extract project IDs from the user's backedProjects array
+        const projectIds = user.backedProjects.map(backedProject => backedProject.toString());
+    
+        // Find the projects using the extracted project IDs
+        const backedProjects = await Project.find({ _id: { $in: projectIds } });
+    
+        res.status(200).json({ backedProjects });
+      } catch (error) {
+        console.error('Error while fetching user-backed projects:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+      }
 };

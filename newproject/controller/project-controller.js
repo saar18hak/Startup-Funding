@@ -3,41 +3,6 @@ const ProjectModel = require("../model/project"); // Assuming you have a project
 const userModel = require("../model/user-model");
 
 
-// exports.addBackerController = async (req, res) => {
-//     try{
-//       const project = await ProjectModel.findById(req.params.id)
-
-//       if(project.backers.filter(like=>like.user.toString()===req.params.id).length>0){
-//         return res.json(400)({
-//           msg:"POSTS already liked"
-//         })
-//       }
-//       project.likes.unshift({user:req.user.id})
-//       await project.save()
-//       res.json(project.likes)
-//     }catch(err){
-//       console.error(err.message)
-//       res.status(500).send("Server Error")
-//     }
-  
-// };
-
-
-// exports.removeBackerController = async (req, res) => {
-//   // const user = await userModel.findById(id)
-//   ProjectModel.findByIdAndUpdate(req.body.id,{
-//     $pull:{backers:req.user._id}
-//   },{
-//     new:true
-//   }).exec((err,result)=>{
-//     if(err){
-//       return res.status(422).json({error:err})
-//     }else{
-//       res.json(result)
-//     }
-//   })
-// };
-
 // GET ALL PROJECTS
 exports.getAllProjectsController = async (req, res) => {
   try {

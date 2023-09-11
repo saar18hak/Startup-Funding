@@ -11,6 +11,12 @@ const userSchema = new Schema({
             type:mongoose.Types.ObjectId,
             ref:"project"
         }
+    ],
+    backedProjects:[
+        {
+            type:mongoose.Types.ObjectId,
+            ref:"project"
+        }
     ]
 });
 
